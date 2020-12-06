@@ -1,0 +1,38 @@
+const int pompastanga = A5;
+const int pompadreapta = A4;
+bool ciclu=0;
+void setup() { 
+  Serial.begin(9600);
+  pinMode(pompastanga, OUTPUT);
+  pinMode(pompadreapta, OUTPUT);
+}
+
+void loop() {
+  int lumina = analogRead(A0);
+  ///<10 nu este
+  ///<500 putontel
+  ///<800 se facu lumina
+  ///>800 soare
+  if(lumina > 200)
+  {
+    if(ciclu==0)
+    {
+        do{
+          digitalWrite(pompastanga, HIGH);
+          delay(5000); ///timpul se scrie in milisecunde
+          digitalWrite(pompastanga, LOW);  
+          delay(500);
+        }while(analogRead(A0) > 200);
+      	ciclu=1;
+    }
+    else
+    {
+      do{
+         digitalWrite(pompadreapta, HIGH);
+         delay(5000);
+         digitalWrite(pompadreapta, LOW);  
+         delay(5000); 
+     }while(analogRead(A0) > 200);
+      ciclu=0;
+    }
+  }}
